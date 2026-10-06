@@ -14,7 +14,7 @@ Rackline is a stockroom dashboard for keeping product counts, reorder points, an
 - Export the current inventory view as a CSV file.
 - Record received and issued stock. The available quantity updates immediately, and an issue cannot exceed stock on hand.
 - Review low-stock products with a suggested top-up quantity and log a receipt from the reorder queue.
-- See the six latest stock movements in the activity history.
+- Review the complete stock movement history, newest first.
 - Keep product changes and movement history saved in this browser with local storage.
 - Use the responsive navigation, section links, and floating Back to top button on desktop and mobile.
 
