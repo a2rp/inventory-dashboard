@@ -1,13 +1,13 @@
 import styles from './App.module.css'
 import Header from './components/header/index.jsx'
+import StockOverview from './components/stockOverview/index.jsx'
+import { initialProducts } from './data/products.js'
 
 const App = () => (
   <div className={styles['app-shell']}>
     <Header />
     <main className={styles['page-content']}>
-      <section id="overview" aria-labelledby="dashboard-heading">
-        <h1 id="dashboard-heading">Rackline inventory workspace</h1>
-      </section>
+      <StockOverview products={initialProducts} />
     </main>
   </div>
 )
