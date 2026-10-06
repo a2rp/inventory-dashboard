@@ -1,6 +1,7 @@
 import styles from './App.module.css'
 import { useEffect, useState } from 'react'
 import Header from './components/header/index.jsx'
+import Footer from './components/footer/index.jsx'
 import InventoryTable from './components/inventoryTable/index.jsx'
 import MovementHistory from './components/movementHistory/index.jsx'
 import MovementModal from './components/movementModal/index.jsx'
@@ -114,6 +115,7 @@ const App = () => {
           <MovementHistory movements={movements} onRecordMovement={() => openMovementModal()} />
         </div>
       </main>
+      <Footer />
       {productModalOpen && (
         <ProductModal
           key={productToEdit?.id || 'new-product'}
