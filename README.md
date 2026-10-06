@@ -1,3 +1,5 @@
+![Project screenshot](./screenshot.png)
+
 # Rackline Inventory Dashboard
 
 Rackline is a stockroom dashboard for keeping product counts, reorder points, and inventory movement in one clear workspace.
