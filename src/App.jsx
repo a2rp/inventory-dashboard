@@ -4,6 +4,7 @@ import Header from './components/header/index.jsx'
 import InventoryTable from './components/inventoryTable/index.jsx'
 import MovementModal from './components/movementModal/index.jsx'
 import ProductModal from './components/productModal/index.jsx'
+import ReorderQueue from './components/reorderQueue/index.jsx'
 import StockOverview from './components/stockOverview/index.jsx'
 import { initialMovements, initialProducts } from './data/products.js'
 
@@ -107,6 +108,9 @@ const App = () => {
           onAddProduct={openProductModal}
           onEditProduct={editProduct}
         />
+        <div className={styles['secondary-section']}>
+          <ReorderQueue products={products} onReceiveStock={(product) => openMovementModal(product.id)} />
+        </div>
       </main>
       {productModalOpen && (
         <ProductModal

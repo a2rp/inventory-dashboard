@@ -12,6 +12,10 @@
     color: var(--color-muted);
     font-size: 14px;
   }
+
+  .secondary-section {
+    margin-top: 24px;
+  }
 }
 
 @media (max-width: 640px) {
