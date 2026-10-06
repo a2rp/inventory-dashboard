@@ -2,9 +2,10 @@ import styles from './App.module.css'
 import { useEffect, useState } from 'react'
 import Header from './components/header/index.jsx'
 import InventoryTable from './components/inventoryTable/index.jsx'
+import MovementModal from './components/movementModal/index.jsx'
 import ProductModal from './components/productModal/index.jsx'
 import StockOverview from './components/stockOverview/index.jsx'
-import { initialProducts } from './data/products.js'
+import { initialMovements, initialProducts } from './data/products.js'
 
 const getSavedProducts = () => {
   try {
@@ -15,14 +16,30 @@ const getSavedProducts = () => {
   }
 }
 
+const getSavedMovements = () => {
+  try {
+    const savedMovements = localStorage.getItem('rackline-movements-v1')
+    return savedMovements ? JSON.parse(savedMovements) : initialMovements
+  } catch {
+    return initialMovements
+  }
+}
+
 const App = () => {
   const [products, setProducts] = useState(getSavedProducts)
   const [productModalOpen, setProductModalOpen] = useState(false)
   const [productToEdit, setProductToEdit] = useState(null)
+  const [movementModalOpen, setMovementModalOpen] = useState(false)
+  const [movementProductId, setMovementProductId] = useState(null)
+  const [movements, setMovements] = useState(getSavedMovements)
 
   useEffect(() => {
     localStorage.setItem('rackline-products-v1', JSON.stringify(products))
   }, [products])
+
+  useEffect(() => {
+    localStorage.setItem('rackline-movements-v1', JSON.stringify(movements))
+  }, [movements])
 
   const openProductModal = () => {
     setProductToEdit(null)
@@ -51,12 +68,40 @@ const App = () => {
   }
 
   const closeProductModal = () => setProductModalOpen(false)
+  const openMovementModal = (productId = null) => {
+    setMovementProductId(productId)
+    setMovementModalOpen(true)
+  }
+  const closeMovementModal = () => setMovementModalOpen(false)
+
+  const saveMovement = (movementDetails) => {
+    const product = products.find((item) => item.id === movementDetails.productId)
+    if (!product) return
+    const signedQuantity = movementDetails.kind === 'received'
+      ? movementDetails.quantity
+      : -movementDetails.quantity
+
+    setProducts((currentProducts) => currentProducts.map((item) =>
+      item.id === product.id ? { ...item, quantity: item.quantity + signedQuantity } : item,
+    ))
+    setMovements((currentMovements) => [{
+      ...movementDetails,
+      id: `MV-${Date.now()}`,
+      productName: product.name,
+      date: new Date().toISOString(),
+    }, ...currentMovements])
+    setMovementModalOpen(false)
+  }
 
   return (
     <div className={styles['app-shell']}>
       <Header />
       <main className={styles['page-content']}>
-        <StockOverview products={products} onAddProduct={openProductModal} />
+        <StockOverview
+          products={products}
+          onAddProduct={openProductModal}
+          onRecordMovement={() => openMovementModal()}
+        />
         <InventoryTable
           products={products}
           onAddProduct={openProductModal}
@@ -69,6 +114,15 @@ const App = () => {
           product={productToEdit}
           onClose={closeProductModal}
           onSave={saveProduct}
+        />
+      )}
+      {movementModalOpen && (
+        <MovementModal
+          key={movementProductId || 'all-products'}
+          products={products}
+          initialProductId={movementProductId}
+          onClose={closeMovementModal}
+          onSave={saveMovement}
         />
       )}
     </div>

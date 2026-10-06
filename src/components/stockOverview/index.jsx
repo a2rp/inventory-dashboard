@@ -1,5 +1,6 @@
 import {
   LuArrowDownRight,
+  LuArrowLeftRight,
   LuArrowUpRight,
   LuBoxes,
   LuCircleDollarSign,
@@ -15,7 +16,7 @@ const formatCurrency = (amount) =>
     maximumFractionDigits: 0,
   }).format(amount)
 
-const StockOverview = ({ products, onAddProduct }) => {
+const StockOverview = ({ products, onAddProduct, onRecordMovement }) => {
   const totalUnits = products.reduce((total, product) => total + product.quantity, 0)
   const inventoryValue = products.reduce(
     (total, product) => total + product.quantity * product.unitCost,
@@ -58,6 +59,9 @@ const StockOverview = ({ products, onAddProduct }) => {
           </div>
           <button className={styles['add-product-button']} type="button" onClick={onAddProduct}>
             <LuPlus aria-hidden="true" /> Add product
+          </button>
+          <button className={styles['movement-button']} type="button" onClick={onRecordMovement}>
+            <LuArrowLeftRight aria-hidden="true" /> Record movement
           </button>
         </div>
       </div>
