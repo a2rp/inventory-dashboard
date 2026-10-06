@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { LuBoxes, LuMenu, LuX } from 'react-icons/lu'
+import { FaGithub } from 'react-icons/fa'
 import styles from './styles.module.css'
 
 const navigationItems = [
@@ -58,6 +59,16 @@ const Header = () => {
             <span className={styles['status-dot']} aria-hidden="true" />
             Main warehouse
           </span>
+          <a
+            className={styles['repository-link']}
+            href="https://github.com/a2rp/inventory-dashboard"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open the Rackline source repository on GitHub"
+          >
+            <FaGithub aria-hidden="true" />
+            <span>Repository</span>
+          </a>
           <button
             className={styles['menu-toggle']}
             type="button"
