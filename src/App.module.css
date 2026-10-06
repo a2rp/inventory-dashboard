@@ -1,0 +1,24 @@
+.app-shell {
+  min-height: 100vh;
+
+  .page-content {
+    width: min(1440px, 100% - 64px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 112px 0 48px;
+  }
+
+  .build-placeholder {
+    color: var(--color-muted);
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    .page-content {
+      width: calc(100% - 32px);
+      padding-top: 96px;
+    }
+  }
+}
