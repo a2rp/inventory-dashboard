@@ -1,16 +1,57 @@
-# React + Vite
+# Rackline Inventory Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Rackline is a stockroom dashboard for keeping product counts, reorder points, and inventory movement in one clear workspace.
 
-Currently, two official plugins are available:
+**Live site:** [a2rp.github.io/inventory-dashboard](https://a2rp.github.io/inventory-dashboard/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Review product counts, stock value, stock health, and category totals.
+- Add products and edit product details, supplier, location, reorder point, cost, and local product photo.
+- Search and filter products by stock level and category.
+- Export the current inventory view as a CSV file.
+- Record received and issued stock. The available quantity updates immediately, and an issue cannot exceed stock on hand.
+- Review low-stock products with a suggested top-up quantity and log a receipt from the reorder queue.
+- See the six latest stock movements in the activity history.
+- Keep product changes and movement history saved in this browser with local storage.
+- Use the responsive navigation, section links, and floating Back to top button on desktop and mobile.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Run locally
 
-## Expanding the Oxlint configuration
+```sh
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Lint and build
+
+```sh
+npm run lint
+npm run build
+```
+
+## Deploy
+
+The project publishes to GitHub Pages from the `gh-pages` branch. To build and publish the current version, run:
+
+```sh
+npm run deploy
+```
+
+The deployed site is [https://a2rp.github.io/inventory-dashboard/](https://a2rp.github.io/inventory-dashboard/).
+
+## Links
+
+- Portfolio: [https://www.ashishranjan.net](https://www.ashishranjan.net)
+- GitHub: [https://github.com/a2rp](https://github.com/a2rp)
+- CodePen: [https://codepen.io/ash1198](https://codepen.io/ash1198)
+- LinkedIn: [https://www.linkedin.com/in/aashishranjan](https://www.linkedin.com/in/aashishranjan)
+- Facebook: [https://www.facebook.com/theash.ashish/](https://www.facebook.com/theash.ashish/)
+- YouTube: [https://www.youtube.com/@ashishranjan-ashz?sub_confirmation=1](https://www.youtube.com/@ashishranjan-ashz?sub_confirmation=1)
+- Email: [mailto:ash.ranjan09@gmail.com](mailto:ash.ranjan09@gmail.com)
+
+## Support
+
+- Support: [https://a2rp-donation-page.netlify.app/](https://a2rp-donation-page.netlify.app/)
+- Buy Me a Coffee: [https://buymeacoffee.com/ashishranjan](https://buymeacoffee.com/ashishranjan)
+- Patreon: [https://www.patreon.com/ashishranjan](https://www.patreon.com/ashishranjan)

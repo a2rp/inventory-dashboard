@@ -430,6 +430,15 @@
 
 @media (max-width: 980px) {
   .overview {
+    .overview-intro {
+      align-items: start;
+      flex-direction: column;
+    }
+
+    .overview-actions {
+      flex-wrap: wrap;
+    }
+
     .metric-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }

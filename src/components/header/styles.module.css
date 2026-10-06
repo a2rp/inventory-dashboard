@@ -93,11 +93,6 @@
     color: #d5dbea;
     font-size: 12px;
 
-    svg {
-      width: 14px;
-      height: 14px;
-      color: #8d99b1;
-    }
   }
 
   .status-dot {

@@ -8,11 +8,6 @@
     padding: 112px 0 48px;
   }
 
-  .build-placeholder {
-    color: var(--color-muted);
-    font-size: 14px;
-  }
-
   .workflow-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(350px, 0.95fr);

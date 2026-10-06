@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { LuBoxes, LuChevronDown, LuMenu, LuX } from 'react-icons/lu'
+import { LuBoxes, LuMenu, LuX } from 'react-icons/lu'
 import styles from './styles.module.css'
 
 const navigationItems = [
@@ -57,7 +57,6 @@ const Header = () => {
           <span className={styles['workspace-label']}>
             <span className={styles['status-dot']} aria-hidden="true" />
             Main warehouse
-            <LuChevronDown aria-hidden="true" />
           </span>
           <button
             className={styles['menu-toggle']}
