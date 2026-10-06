@@ -1,6 +1,7 @@
 import styles from './App.module.css'
 import { useEffect, useState } from 'react'
 import Header from './components/header/index.jsx'
+import InventoryTable from './components/inventoryTable/index.jsx'
 import ProductModal from './components/productModal/index.jsx'
 import StockOverview from './components/stockOverview/index.jsx'
 import { initialProducts } from './data/products.js'
@@ -28,6 +29,11 @@ const App = () => {
     setProductModalOpen(true)
   }
 
+  const editProduct = (product) => {
+    setProductToEdit(product)
+    setProductModalOpen(true)
+  }
+
   const saveProduct = (updatedProduct) => {
     if (productToEdit) {
       setProducts((currentProducts) =>
@@ -51,6 +57,11 @@ const App = () => {
       <Header />
       <main className={styles['page-content']}>
         <StockOverview products={products} onAddProduct={openProductModal} />
+        <InventoryTable
+          products={products}
+          onAddProduct={openProductModal}
+          onEditProduct={editProduct}
+        />
       </main>
       {productModalOpen && (
         <ProductModal
