@@ -96,7 +96,7 @@ const InventoryTable = ({ products, onAddProduct, onEditProduct }) => {
             />
           </label>
           <div className={styles['toolbar-filters']}>
-            <label className={styles['select-filter']}>
+            <label className={`${styles['select-filter']} ${styles['select-filter-with-icon']}`}>
               <LuSlidersHorizontal aria-hidden="true" />
               <span className={styles['visually-hidden']}>Filter by stock status</span>
               <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}>

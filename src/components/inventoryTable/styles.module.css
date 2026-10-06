@@ -135,28 +135,39 @@
     position: relative;
     display: flex;
     align-items: center;
+    width: 152px;
     min-height: 39px;
-    padding-left: 10px;
+    padding: 0;
     color: #7b879a;
     background: #ffffff;
     border: 1px solid #e1e6ed;
     border-radius: 9px;
 
     > svg {
+      position: absolute;
+      left: 10px;
+      pointer-events: none;
       width: 14px;
       height: 14px;
       flex: 0 0 auto;
     }
 
     select {
-      max-width: 144px;
-      min-height: 37px;
-      padding: 0 25px 0 7px;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0 25px 0 10px;
       color: #536078;
       background: transparent;
       border: 0;
       outline: none;
       font-size: 11px;
+    }
+
+    &.select-filter-with-icon select {
+      padding-left: 32px;
     }
 
     &:focus-within {
