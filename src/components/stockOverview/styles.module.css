@@ -45,6 +45,41 @@
     font-size: 14px;
   }
 
+  .overview-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .add-product-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 44px;
+    padding: 0 15px;
+    color: var(--color-ink);
+    background: var(--color-lime);
+    border: 1px solid #c5e15b;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-color: #a4c93a;
+      outline: none;
+      box-shadow: 0 4px 12px rgb(132 164 42 / 18%);
+    }
+  }
+
   .overview-note {
     display: flex;
     align-items: center;
@@ -380,6 +415,15 @@
       align-items: start;
       flex-direction: column;
       gap: 17px;
+    }
+
+    .overview-actions {
+      width: 100%;
+    }
+
+    .overview-note {
+      flex: 1;
+      min-width: 0;
     }
 
     h1 {

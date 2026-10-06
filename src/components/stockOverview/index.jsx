@@ -3,6 +3,7 @@ import {
   LuArrowUpRight,
   LuBoxes,
   LuCircleDollarSign,
+  LuPlus,
   LuTriangleAlert,
 } from 'react-icons/lu'
 import styles from './styles.module.css'
@@ -14,7 +15,7 @@ const formatCurrency = (amount) =>
     maximumFractionDigits: 0,
   }).format(amount)
 
-const StockOverview = ({ products }) => {
+const StockOverview = ({ products, onAddProduct }) => {
   const totalUnits = products.reduce((total, product) => total + product.quantity, 0)
   const inventoryValue = products.reduce(
     (total, product) => total + product.quantity * product.unitCost,
@@ -50,9 +51,14 @@ const StockOverview = ({ products }) => {
             A clear view of what is moving, what is low, and what is ready to go.
           </p>
         </div>
-        <div className={styles['overview-note']}>
-          <span className={styles['note-icon']}><LuBoxes aria-hidden="true" /></span>
-          <span><strong>Main warehouse</strong><small>One location · Live counts</small></span>
+        <div className={styles['overview-actions']}>
+          <div className={styles['overview-note']}>
+            <span className={styles['note-icon']}><LuBoxes aria-hidden="true" /></span>
+            <span><strong>Main warehouse</strong><small>One location · Live counts</small></span>
+          </div>
+          <button className={styles['add-product-button']} type="button" onClick={onAddProduct}>
+            <LuPlus aria-hidden="true" /> Add product
+          </button>
         </div>
       </div>
 
