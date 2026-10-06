@@ -2,6 +2,7 @@ import styles from './App.module.css'
 import { useEffect, useState } from 'react'
 import Header from './components/header/index.jsx'
 import InventoryTable from './components/inventoryTable/index.jsx'
+import MovementHistory from './components/movementHistory/index.jsx'
 import MovementModal from './components/movementModal/index.jsx'
 import ProductModal from './components/productModal/index.jsx'
 import ReorderQueue from './components/reorderQueue/index.jsx'
@@ -108,8 +109,9 @@ const App = () => {
           onAddProduct={openProductModal}
           onEditProduct={editProduct}
         />
-        <div className={styles['secondary-section']}>
+        <div className={styles['workflow-grid']}>
           <ReorderQueue products={products} onReceiveStock={(product) => openMovementModal(product.id)} />
+          <MovementHistory movements={movements} onRecordMovement={() => openMovementModal()} />
         </div>
       </main>
       {productModalOpen && (
