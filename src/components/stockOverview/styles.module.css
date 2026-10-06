@@ -1,4 +1,6 @@
 .overview {
+  scroll-margin-top: 96px;
+
   .overview-intro {
     display: flex;
     align-items: end;

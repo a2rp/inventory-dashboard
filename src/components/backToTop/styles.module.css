@@ -1,0 +1,37 @@
+.back-to-top {
+  position: fixed;
+  z-index: 15;
+  right: 28px;
+  bottom: 27px;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  color: #ffffff;
+  background: var(--color-cobalt);
+  border: 1px solid var(--color-cobalt);
+  border-radius: 13px;
+  box-shadow: 0 8px 24px rgb(16 27 52 / 20%);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-lime);
+    outline: none;
+    box-shadow: 0 0 0 4px rgb(214 243 109 / 25%), 0 8px 24px rgb(16 27 52 / 20%);
+  }
+}
+
+@media (max-width: 560px) {
+  .back-to-top {
+    right: 16px;
+    bottom: 18px;
+    width: 42px;
+    height: 42px;
+  }
+}

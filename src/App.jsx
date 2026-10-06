@@ -1,5 +1,6 @@
 import styles from './App.module.css'
 import { useEffect, useState } from 'react'
+import BackToTop from './components/backToTop/index.jsx'
 import Header from './components/header/index.jsx'
 import Footer from './components/footer/index.jsx'
 import InventoryTable from './components/inventoryTable/index.jsx'
@@ -116,6 +117,7 @@ const App = () => {
         </div>
       </main>
       <Footer />
+      <BackToTop />
       {productModalOpen && (
         <ProductModal
           key={productToEdit?.id || 'new-product'}
