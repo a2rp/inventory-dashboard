@@ -18,7 +18,6 @@ const formatMovementDate = (dateValue) => {
 const MovementHistory = ({ movements, onRecordMovement }) => {
   const recentMovements = [...movements]
     .sort((first, second) => new Date(second.date) - new Date(first.date))
-    .slice(0, 6)
 
   return (
     <section className={styles.history} id="movements" aria-labelledby="movement-heading">
