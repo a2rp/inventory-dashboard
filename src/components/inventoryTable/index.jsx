@@ -28,7 +28,11 @@ const formatCurrency = (amount) =>
     maximumFractionDigits: 2,
   }).format(amount)
 
-const makeCsvCell = (value) => `"${String(value).replaceAll('"', '""')}"`
+const makeCsvCell = (value) => {
+  const text = String(value ?? '')
+  const safe = /^[\u0000-\u0020]*[=+\-@]/.test(text) ? `'${text}` : text
+  return `"${safe.replaceAll('"', '""')}"`
+}
 
 const InventoryTable = ({ products, onAddProduct, onEditProduct }) => {
   const [search, setSearch] = useState('')
@@ -67,7 +71,7 @@ const InventoryTable = ({ products, onAddProduct, onEditProduct }) => {
     downloadLink.href = downloadUrl
     downloadLink.download = 'rackline-inventory.csv'
     downloadLink.click()
-    URL.revokeObjectURL(downloadUrl)
+    window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000)
   }
 
   return (

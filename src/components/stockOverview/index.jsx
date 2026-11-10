@@ -1,7 +1,6 @@
 import {
   LuArrowDownRight,
   LuArrowLeftRight,
-  LuArrowUpRight,
   LuBoxes,
   LuCircleDollarSign,
   LuPlus,
@@ -71,7 +70,7 @@ const StockOverview = ({ products, onAddProduct, onRecordMovement }) => {
           <span className={styles['metric-icon']}><LuBoxes aria-hidden="true" /></span>
           <span className={styles['metric-label']}>Products tracked</span>
           <strong>{products.length}</strong>
-          <span className={styles['metric-footnote']}><LuArrowUpRight aria-hidden="true" /> 2 added this month</span>
+          <span className={styles['metric-footnote']}>Across all categories</span>
         </article>
         <article className={`${styles.metric} ${styles['metric-lime']}`}>
           <span className={styles['metric-icon']}><LuCircleDollarSign aria-hidden="true" /></span>

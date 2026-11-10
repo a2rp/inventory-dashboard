@@ -16,6 +16,7 @@ Rackline is a stockroom dashboard for keeping product counts, reorder points, an
 - Review low-stock products with a suggested top-up quantity and log a receipt from the reorder queue.
 - Review the complete stock movement history, newest first.
 - Keep product changes and movement history saved in this browser with local storage.
+- Warn when browser storage is unavailable so you know changes may not persist after leaving the page.
 - Use the responsive navigation, section links, and floating Back to top button on desktop and mobile.
 
 ## Run locally

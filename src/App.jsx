@@ -11,10 +11,21 @@ import ReorderQueue from './components/reorderQueue/index.jsx'
 import StockOverview from './components/stockOverview/index.jsx'
 import { initialMovements, initialProducts } from './data/products.js'
 
+const saveLocalData = (key, value) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(value))
+    return true
+  } catch {
+    return false
+  }
+}
+
 const getSavedProducts = () => {
   try {
     const savedProducts = localStorage.getItem('rackline-products-v1')
-    return savedProducts ? JSON.parse(savedProducts) : initialProducts
+    if (!savedProducts) return initialProducts
+    const parsedProducts = JSON.parse(savedProducts)
+    return Array.isArray(parsedProducts) ? parsedProducts : initialProducts
   } catch {
     return initialProducts
   }
@@ -23,7 +34,9 @@ const getSavedProducts = () => {
 const getSavedMovements = () => {
   try {
     const savedMovements = localStorage.getItem('rackline-movements-v1')
-    return savedMovements ? JSON.parse(savedMovements) : initialMovements
+    if (!savedMovements) return initialMovements
+    const parsedMovements = JSON.parse(savedMovements)
+    return Array.isArray(parsedMovements) ? parsedMovements : initialMovements
   } catch {
     return initialMovements
   }
@@ -36,14 +49,13 @@ const App = () => {
   const [movementModalOpen, setMovementModalOpen] = useState(false)
   const [movementProductId, setMovementProductId] = useState(null)
   const [movements, setMovements] = useState(getSavedMovements)
+  const [storageWarning, setStorageWarning] = useState(false)
 
   useEffect(() => {
-    localStorage.setItem('rackline-products-v1', JSON.stringify(products))
-  }, [products])
-
-  useEffect(() => {
-    localStorage.setItem('rackline-movements-v1', JSON.stringify(movements))
-  }, [movements])
+    const productsSaved = saveLocalData('rackline-products-v1', products)
+    const movementsSaved = saveLocalData('rackline-movements-v1', movements)
+    setStorageWarning(!productsSaved || !movementsSaved)
+  }, [products, movements])
 
   const openProductModal = () => {
     setProductToEdit(null)
@@ -100,7 +112,12 @@ const App = () => {
   return (
     <div className={styles['app-shell']}>
       <Header />
-      <main className={styles['page-content']}>
+      <main className={styles['page-content']} id="main-content" tabIndex={-1}>
+        {storageWarning && (
+          <p className={styles['storage-warning']} role="alert">
+            Browser storage is unavailable or full. Changes may not be saved after you leave this page.
+          </p>
+        )}
         <StockOverview
           products={products}
           onAddProduct={openProductModal}

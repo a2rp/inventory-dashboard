@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { LuArrowDownToLine, LuArrowUpFromLine, LuPackageCheck, LuX } from 'react-icons/lu'
+import { useModalAccessibility } from '../../utils/useModalAccessibility.js'
 import styles from './styles.module.css'
 
 const getSuggestedQuantity = (product, kind) => {
@@ -18,14 +19,7 @@ const MovementModal = ({ products, initialProductId, initialKind = 'received', o
   const selectedProduct = products.find((product) => product.id === productId)
   const quantityNumber = Number(quantity)
   const exceedsAvailableStock = kind === 'issued' && quantityNumber > (selectedProduct?.quantity || 0)
-
-  useEffect(() => {
-    const closeOnEscape = (event) => {
-      if (event.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', closeOnEscape)
-    return () => document.removeEventListener('keydown', closeOnEscape)
-  }, [onClose])
+  const dialogRef = useModalAccessibility(onClose)
 
   const chooseKind = (nextKind) => {
     setKind(nextKind)
@@ -45,7 +39,7 @@ const MovementModal = ({ products, initialProductId, initialKind = 'received', o
         if (event.target === event.currentTarget) onClose()
       }}
     >
-      <section className={styles.dialog} role="dialog" aria-modal="true" aria-labelledby="movement-modal-title">
+      <section className={styles.dialog} ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="movement-modal-title" tabIndex={-1}>
         <header className={styles['dialog-header']}>
           <span className={styles['header-icon']}><LuPackageCheck aria-hidden="true" /></span>
           <div>
@@ -93,7 +87,7 @@ const MovementModal = ({ products, initialProductId, initialKind = 'received', o
             <label className={styles.field}>
               <span>Units {kind === 'received' ? 'received' : 'issued'}</span>
               <input
-                autoFocus
+                data-dialog-focus
                 min="1"
                 required
                 type="number"

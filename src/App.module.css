@@ -1,6 +1,16 @@
 .app-shell {
   min-height: 100vh;
 
+  .storage-warning {
+    margin: 0 0 18px;
+    padding: 12px 16px;
+    border: 1px solid #dfb568;
+    border-radius: 10px;
+    color: #744a11;
+    background: #fff7e7;
+    font-size: 14px;
+  }
+
   .page-content {
     width: min(1440px, 100% - 64px);
     min-height: 100vh;

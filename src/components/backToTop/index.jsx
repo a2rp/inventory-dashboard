@@ -20,7 +20,12 @@ const BackToTop = () => {
             type="button"
             aria-label="Back to top"
             title="Back to top"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => {
+                const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                    ? "auto"
+                    : "smooth";
+                window.scrollTo({ top: 0, behavior });
+            }}
         >
             <LuArrowUp aria-hidden="true" />
         </button>

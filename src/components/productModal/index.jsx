@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { LuPackagePlus, LuX } from 'react-icons/lu'
+import { useModalAccessibility } from '../../utils/useModalAccessibility.js'
 import styles from './styles.module.css'
 
 const photoOptions = [
@@ -33,14 +34,7 @@ const ProductModal = ({ product, onClose, onSave }) => {
     unitCost: String(product?.unitCost ?? emptyProduct.unitCost),
   }))
   const isEditing = Boolean(product)
-
-  useEffect(() => {
-    const closeOnEscape = (event) => {
-      if (event.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', closeOnEscape)
-    return () => document.removeEventListener('keydown', closeOnEscape)
-  }, [onClose])
+  const dialogRef = useModalAccessibility(onClose)
 
   const updateField = (event) => {
     const { name, value } = event.target
@@ -66,9 +60,11 @@ const ProductModal = ({ product, onClose, onSave }) => {
     >
       <section
         className={styles.dialog}
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="product-modal-title"
+        tabIndex={-1}
       >
         <header className={styles['dialog-header']}>
           <span className={styles['header-icon']}><LuPackagePlus aria-hidden="true" /></span>
@@ -97,7 +93,7 @@ const ProductModal = ({ product, onClose, onSave }) => {
           <div className={styles['field-grid']}>
             <label className={`${styles.field} ${styles['field-wide']}`}>
               <span>Product name</span>
-              <input autoFocus required name="name" value={form.name} onChange={updateField} placeholder="For example, desk lamp" />
+              <input data-dialog-focus required name="name" value={form.name} onChange={updateField} placeholder="For example, desk lamp" />
             </label>
             <label className={styles.field}>
               <span>SKU</span>
